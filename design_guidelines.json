@@ -1,0 +1,151 @@
+{
+  "identity": {
+    "persona": "E1: The Anti-AI Designer",
+    "mission": "Create a premium, serious B2B enterprise aesthetic that breaks the 'AI Slop' convention. Dark, electric, and emotionally directed.",
+    "principles": [
+      "Fusion over Imitation",
+      "Emotion First",
+      "Content is King",
+      "Zoom In",
+      "Negative Space",
+      "Contrast"
+    ]
+  },
+  "typography": {
+    "font_family": {
+      "headings": "Syne, sans-serif",
+      "body": "Manrope, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "import_url": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap",
+    "rules": [
+      "DO NOT use Inter for headings.",
+      "Headings (Syne): Use weights 700 or 800 for impact. Tight tracking (-0.02em).",
+      "Body (Manrope): Use weights 400 or 500. Relaxed leading (1.6).",
+      "Overlines: Uppercase, tracking-widest, text-xs, font-mono."
+    ]
+  },
+  "colors": {
+    "palette": {
+      "background": {
+        "default": "#050505",
+        "paper": "#0A0A0A",
+        "subtle": "#121212"
+      },
+      "primary": {
+        "main": "#0066FF",
+        "hover": "#0052CC",
+        "glow": "0 0 20px rgba(0, 102, 255, 0.5)"
+      },
+      "accent": {
+        "cyan": "#00E0FF",
+        "purple": "#7B61FF"
+      },
+      "text": {
+        "primary": "#FFFFFF",
+        "secondary": "#A1A1AA",
+        "muted": "#52525B"
+      },
+      "border": {
+        "default": "#27272A",
+        "active": "#0066FF"
+      }
+    },
+    "usage": [
+      "Background: Void Black (#050505) - Never pure black #000000.",
+      "Primary Action: Electric Blue (#0066FF).",
+      "Gradients: Use subtle 'glow' gradients, not full background gradients.",
+      "Glassmorphism: bg-black/40 backdrop-blur-xl border-white/10."
+    ]
+  },
+  "layout": {
+    "grid_system": "The Bento Grid (Mode A: Tetris)",
+    "spacing": {
+      "container_padding": "px-6 md:px-12 lg:px-24",
+      "section_gap": "gap-24 or gap-32",
+      "element_gap": "gap-6 or gap-8"
+    },
+    "containers": {
+      "max_width": "max-w-7xl mx-auto",
+      "card_style": "bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-colors duration-300"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#0066FF] text-white hover:bg-[#0052CC] rounded-full px-8 py-6 text-lg font-semibold shadow-[0_0_20px_rgba(0,102,255,0.3)] hover:shadow-[0_0_30px_rgba(0,102,255,0.5)] transition-all",
+      "secondary": "bg-transparent border border-white/20 text-white hover:bg-white/10 rounded-full px-8 py-6 text-lg font-medium backdrop-blur-sm transition-all",
+      "ghost": "text-gray-400 hover:text-white transition-colors"
+    },
+    "cards": {
+      "feature": "group relative overflow-hidden rounded-3xl bg-white/5 p-8 border border-white/10 hover:border-primary/50 transition-all duration-500",
+      "tracing_beam": "Use a moving gradient border effect for high-value cards."
+    },
+    "inputs": {
+      "style": "bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl h-12"
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-xl bg-black/50 border border-white/10",
+    "noise": "Add a subtle noise texture overlay with opacity-5 pointer-events-none fixed inset-0 z-50",
+    "glows": "Use radial gradients with blur-3xl opacity-20 to create atmospheric lighting behind sections."
+  },
+  "image_urls": {
+    "hero_background": {
+      "url": "https://images.pexels.com/photos/18545023/pexels-photo-18545023.jpeg",
+      "alt": "Abstract blue neon data network visualization",
+      "usage": "Hero section background with heavy dark overlay (bg-black/80)"
+    },
+    "about_section": {
+      "url": "https://images.pexels.com/photos/7644068/pexels-photo-7644068.jpeg",
+      "alt": "Diverse corporate team meeting",
+      "usage": "About Us section, perhaps with a gradient fade"
+    },
+    "industries": [
+      {
+        "url": "https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg",
+        "alt": "Logistics warehouse manager with tablet",
+        "label": "Logistics & Supply Chain"
+      },
+      {
+        "url": "https://images.pexels.com/photos/6914031/pexels-photo-6914031.jpeg",
+        "alt": "Modern corporate office",
+        "label": "Corporate Enterprise"
+      },
+      {
+        "url": "https://images.pexels.com/photos/7562088/pexels-photo-7562088.jpeg",
+        "alt": "Abstract tech visualization",
+        "label": "Technology & SaaS"
+      }
+    ],
+    "logo": {
+      "url": "https://customer-assets.emergentagent.com/job_5eeb7c69-554b-42cc-a1a9-e49a05bba873/artifacts/ehc75kbw_image.png",
+      "alt": "Solve Automations Logo"
+    }
+  },
+  "motion": {
+    "scroll": "Use Lenis for smooth scrolling.",
+    "reveal": "Staggered fade-up animations for all text and cards (y: 20 -> 0, opacity: 0 -> 1).",
+    "hover": "Scale up (1.02) on cards, glow intensification on buttons."
+  },
+  "accessibility": {
+    "contrast": "Ensure text is WCAG AA compliant. Use text-gray-300 for secondary text, not darker.",
+    "focus": "Visible focus rings (ring-2 ring-primary) for keyboard navigation.",
+    "prefers_reduced_motion": "Respect user settings."
+  },
+  "instructions_to_main_agent": [
+    "1. INSTALL DEPENDENCIES: npm install @fontsource/syne @fontsource/manrope framer-motion lucide-react clsx tailwind-merge",
+    "2. SETUP FONTS: Import fonts in index.css or App.js.",
+    "3. CONFIGURE TAILWIND: Update tailwind.config.js with the colors and fonts defined above.",
+    "4. BUILD LAYOUT: Use the 'Tetris' grid for the Features section.",
+    "5. IMPLEMENT HERO: Use the abstract background image with a strong gradient overlay. Center the 'Book a Call' CTA.",
+    "6. USE SHADCN: Use Shadcn components for the Booking Form (Calendar, Dialog, Input) but style them to match the Dark/Electric theme.",
+    "7. DATA-TESTID: Add data-testid to all interactive elements."
+  ],
+  "universal_guidelines": [
+    "Avoid 'AI Slop' - no generic gradients or centered layouts without tension.",
+    "Use 2-3x more spacing than typical.",
+    "Every interaction needs a micro-animation.",
+    "Dark colors look good when used independently without gradients.",
+    "Do not use transparent backgrounds for dropdowns/headers without blur."
+  ]
+}

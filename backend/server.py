@@ -6,9 +6,11 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
-from typing import List, Optional
+from typing import Annotated, List, Optional
 import uuid
 from datetime import datetime, timezone
+from datetime import date as date_type
+from datetime import time as time_type
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -31,6 +33,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+AVAILABLE_SLOTS = [
+    "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+    "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"
+]
+
 # ===================== MODELS =====================
 
 # Lead Model
@@ -38,14 +45,14 @@ class Lead(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
-    email: str
+    email: EmailStr
     company: Optional[str] = None
     message: Optional[str] = None
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class LeadCreate(BaseModel):
     name: str
-    email: str
+    email: EmailStr
     company: Optional[str] = None
     message: Optional[str] = None
 
@@ -54,22 +61,22 @@ class Booking(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
-    email: str
+    email: EmailStr
     phone: Optional[str] = None
     company: Optional[str] = None
-    date: str  # ISO date string
-    time: str  # Time slot string
+    date: Annotated[str, Field(pattern=r"^\d{4}-\d{2}-\d{2}$")]
+    time: Annotated[str, Field(pattern=r"^\d{2}:\d{2}$")]
     notes: Optional[str] = None
     status: str = "pending"  # pending, confirmed, cancelled
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class BookingCreate(BaseModel):
     name: str
-    email: str
+    email: EmailStr
     phone: Optional[str] = None
     company: Optional[str] = None
-    date: str
-    time: str
+    date: Annotated[str, Field(pattern=r"^\d{4}-\d{2}-\d{2}$")]
+    time: Annotated[str, Field(pattern=r"^\d{2}:\d{2}$")]
     notes: Optional[str] = None
 
 # Call Log Model (for demo calls - mocked Twilio)
@@ -118,7 +125,30 @@ async def get_leads():
 @api_router.post("/bookings", response_model=Booking)
 async def create_booking(input: BookingCreate):
     """Create a new booking"""
-    booking_obj = Booking(**input.model_dump())
+    try:
+        booking_date: date_type = datetime.strptime(input.date, "%Y-%m-%d").date()
+        booking_time: time_type = datetime.strptime(input.time, "%H:%M").time()
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid date or time format. Use YYYY-MM-DD and HH:MM.")
+
+    normalized_time = booking_time.strftime("%H:%M")
+    normalized_date = booking_date.isoformat()
+
+    if normalized_time not in AVAILABLE_SLOTS:
+        raise HTTPException(status_code=400, detail="Requested time is outside available slots")
+
+    existing_booking = await db.bookings.find_one(
+        {"date": normalized_date, "time": normalized_time, "status": {"$ne": "cancelled"}},
+        {"_id": 1},
+    )
+    if existing_booking:
+        raise HTTPException(status_code=400, detail="Selected slot is already booked")
+
+    booking_obj = Booking(
+        **input.model_dump(),
+        date=normalized_date,
+        time=normalized_time,
+    )
     doc = booking_obj.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
     await db.bookings.insert_one(doc)
@@ -137,22 +167,21 @@ async def get_bookings():
 @api_router.get("/bookings/available-slots")
 async def get_available_slots(date: str):
     """Get available time slots for a specific date"""
-    # All possible time slots
-    all_slots = [
-        "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
-        "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"
-    ]
-    
+    try:
+        normalized_date = datetime.strptime(date, "%Y-%m-%d").date().isoformat()
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid date format. Use YYYY-MM-DD.")
+
     # Get booked slots for the date
     booked = await db.bookings.find(
-        {"date": date, "status": {"$ne": "cancelled"}},
+        {"date": normalized_date, "status": {"$ne": "cancelled"}},
         {"_id": 0, "time": 1}
     ).to_list(100)
-    
+
     booked_times = [b['time'] for b in booked]
-    available = [slot for slot in all_slots if slot not in booked_times]
-    
-    return {"date": date, "available_slots": available}
+    available = [slot for slot in AVAILABLE_SLOTS if slot not in booked_times]
+
+    return {"date": normalized_date, "available_slots": available}
 
 # -------- DEMO CALLS (MOCKED TWILIO) --------
 @api_router.post("/calls/initiate", response_model=CallLog)

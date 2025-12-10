@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Toaster } from "@/components/ui/sonner";
 
 // Components
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ProblemSolution from "@/components/ProblemSolution";
+import ProcessComparison from "@/components/ProcessComparison";
 import HowItWorks from "@/components/HowItWorks";
 import Industries from "@/components/Industries";
 import About from "@/components/About";
@@ -31,6 +32,7 @@ const LandingPage = () => {
       <main>
         <Hero onDemoClick={() => setShowDemoModal(true)} />
         <ProblemSolution />
+        <ProcessComparison />
         <HowItWorks />
         <Industries />
         <About />

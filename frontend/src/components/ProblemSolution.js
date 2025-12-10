@@ -1,22 +1,19 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { XCircle, CheckCircle2, ArrowRight } from "lucide-react";
+import { XCircle, CheckCircle2 } from "lucide-react";
 
+// Reduced to 3 items per category as requested
 const problems = [
-  "Missed calls during peak hours or after business hours",
-  "High costs for 24/7 human call center operations",
-  "Inconsistent customer service quality",
-  "Language barriers limiting global reach",
-  "Long wait times frustrating customers",
+  "Verpasste Anrufe außerhalb der Geschäftszeiten",
+  "Hohe Kosten für 24/7-Callcenter-Betrieb",
+  "Inkonsistente Servicequalität bei hohem Anrufaufkommen",
 ];
 
 const solutions = [
-  "AI answers every call instantly, 24/7/365",
-  "Reduce operational costs by up to 70%",
-  "Consistent, professional responses every time",
-  "Multilingual support out of the box",
-  "Zero wait time with instant AI response",
+  "KI beantwortet jeden Anruf sofort – 24/7/365",
+  "Reduzieren Sie Betriebskosten um bis zu 70%",
+  "Gleichbleibend professionelle Antworten – jedes Mal",
 ];
 
 export default function ProblemSolution() {
@@ -25,8 +22,8 @@ export default function ProblemSolution() {
 
   return (
     <section ref={ref} className="section-padding bg-void-black relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-electric-blue/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+      {/* Subtle Background Glow - lower z-index */}
+      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-electric-blue/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 -z-10" />
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
@@ -34,22 +31,22 @@ export default function ProblemSolution() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-gray-400 mb-6">
-            The Challenge
+            Das Problem
           </span>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Your customers deserve better
+          <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 px-4">
+            Ihre Kunden verdienen besseren Service
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Traditional phone support can't keep up with modern customer expectations.
-            Here's what changes with Solve Automations.
+          <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto px-4">
+            Traditioneller Telefon-Support kann mit modernen Kundenerwartungen nicht mithalten.
+            So ändert sich das mit Solve Automations.
           </p>
         </motion.div>
 
         {/* Problem vs Solution Grid */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-10 px-4">
           {/* Problems Column */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -58,10 +55,10 @@ export default function ProblemSolution() {
             className="space-y-4"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0">
                 <XCircle className="w-5 h-5 text-red-400" />
               </div>
-              <h3 className="font-heading text-xl font-semibold text-white">Without AI</h3>
+              <h3 className="font-heading text-lg md:text-xl font-semibold text-white">Ohne KI-Assistent</h3>
             </div>
             
             {problems.map((problem, index) => (
@@ -73,7 +70,7 @@ export default function ProblemSolution() {
                 className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5"
               >
                 <XCircle className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
-                <p className="text-gray-400">{problem}</p>
+                <p className="text-gray-400 text-sm md:text-base">{problem}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -86,10 +83,10 @@ export default function ProblemSolution() {
             className="space-y-4"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-full bg-electric-blue/10 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-electric-blue/10 flex items-center justify-center flex-shrink-0">
                 <CheckCircle2 className="w-5 h-5 text-electric-blue" />
               </div>
-              <h3 className="font-heading text-xl font-semibold text-white">With Solve AI</h3>
+              <h3 className="font-heading text-lg md:text-xl font-semibold text-white">Mit Solve KI</h3>
             </div>
             
             {solutions.map((solution, index) => (
@@ -101,7 +98,7 @@ export default function ProblemSolution() {
                 className="flex items-start gap-4 p-4 rounded-xl bg-electric-blue/5 border border-electric-blue/20"
               >
                 <CheckCircle2 className="w-5 h-5 text-electric-blue mt-0.5 flex-shrink-0" />
-                <p className="text-gray-300">{solution}</p>
+                <p className="text-gray-300 text-sm md:text-base">{solution}</p>
               </motion.div>
             ))}
           </motion.div>

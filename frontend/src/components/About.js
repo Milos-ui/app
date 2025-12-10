@@ -8,23 +8,23 @@ const ABOUT_IMAGE = "https://images.pexels.com/photos/7644068/pexels-photo-76440
 const values = [
   {
     icon: Shield,
-    title: "Enterprise Security",
-    description: "GDPR compliant, SOC 2 certified, end-to-end encryption.",
+    title: "Enterprise-Sicherheit",
+    description: "DSGVO-konform, ISO 27001, Ende-zu-Ende-Verschlüsselung.",
   },
   {
     icon: Zap,
-    title: "Cutting-Edge AI",
-    description: "Powered by the latest language models for natural conversations.",
+    title: "Modernste KI",
+    description: "Neueste Sprachmodelle für natürliche Gespräche.",
   },
   {
     icon: Users,
-    title: "Human-Centric",
-    description: "AI that enhances your team, not replaces them.",
+    title: "Mensch im Fokus",
+    description: "KI, die Ihr Team unterstützt, nicht ersetzt.",
   },
   {
     icon: Globe,
-    title: "Global Reach",
-    description: "Multilingual support for worldwide customer base.",
+    title: "Globale Reichweite",
+    description: "Mehrsprachiger Support für weltweite Kunden.",
   },
 ];
 
@@ -36,17 +36,17 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="section-padding bg-void-paper relative overflow-hidden"
+      className="section-padding bg-void-black relative overflow-hidden"
       data-testid="about-section"
     >
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center px-4">
           {/* Image Side */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="relative order-2 lg:order-1"
           >
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
               <img
@@ -62,10 +62,10 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute -bottom-6 -right-6 bg-void-black/90 backdrop-blur-xl border border-white/10 rounded-xl p-6 max-w-xs"
+              className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-void-black/90 backdrop-blur-xl border border-white/10 rounded-xl p-4 md:p-6 max-w-[200px] md:max-w-xs"
             >
-              <div className="text-4xl font-heading font-bold text-electric-blue mb-1">70%</div>
-              <div className="text-sm text-gray-400">Average cost reduction for our clients</div>
+              <div className="text-3xl md:text-4xl font-heading font-bold text-electric-blue mb-1">70%</div>
+              <div className="text-xs md:text-sm text-gray-400">Durchschnittliche Kostenreduzierung für unsere Kunden</div>
             </motion.div>
           </motion.div>
 
@@ -74,37 +74,38 @@ export default function About() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="order-1 lg:order-2"
           >
             <span className="inline-block px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-gray-400 mb-6">
-              About Us
+              Über uns
             </span>
             
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Pioneering AI-powered business communication
+            <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6 leading-tight">
+              Pioniere der KI-gestützten Geschäftskommunikation
             </h2>
             
-            <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-              Solve Automations is a technology company focused on transforming how businesses 
-              handle phone communications. We combine cutting-edge AI with enterprise-grade 
-              reliability to deliver solutions that work.
+            <p className="text-gray-400 text-base md:text-lg mb-8 leading-relaxed">
+              Solve Automations ist ein Technologieunternehmen, das sich auf die Transformation 
+              der telefonischen Unternehmenskommunikation spezialisiert hat. Wir kombinieren 
+              modernste KI mit Enterprise-Zuverlässigkeit.
             </p>
 
             {/* Values Grid */}
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
               {values.map((value, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  className="flex items-start gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/5"
+                  className="flex items-start gap-3 p-3 md:p-4 rounded-xl bg-white/[0.02] border border-white/5"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-electric-blue/10 flex items-center justify-center flex-shrink-0">
-                    <value.icon className="w-5 h-5 text-electric-blue" />
+                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-electric-blue/10 flex items-center justify-center flex-shrink-0">
+                    <value.icon className="w-4 h-4 md:w-5 md:h-5 text-electric-blue" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-1">{value.title}</h4>
-                    <p className="text-sm text-gray-400">{value.description}</p>
+                    <h4 className="font-semibold text-white text-sm md:text-base mb-1">{value.title}</h4>
+                    <p className="text-xs md:text-sm text-gray-400">{value.description}</p>
                   </div>
                 </motion.div>
               ))}

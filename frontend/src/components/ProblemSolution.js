@@ -21,9 +21,7 @@ export default function ProblemSolution() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="section-padding bg-void-black relative overflow-hidden">
-      {/* Subtle Background Glow - lower z-index */}
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-electric-blue/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 -z-10" />
+    <section ref={ref} className="section-padding bg-void-black relative">
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
@@ -62,16 +60,13 @@ export default function ProblemSolution() {
             </div>
             
             {problems.map((problem, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                 className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/5"
               >
-                <XCircle className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
-                <p className="text-gray-400 text-sm md:text-base">{problem}</p>
-              </motion.div>
+                <XCircle className="w-5 h-5 text-red-400 mt-1 flex-shrink-0" />
+                <p className="text-gray-400 text-sm md:text-base leading-relaxed">{problem}</p>
+              </div>
             ))}
           </motion.div>
 
@@ -90,16 +85,13 @@ export default function ProblemSolution() {
             </div>
             
             {solutions.map((solution, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, x: 20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                 className="flex items-start gap-4 p-4 rounded-xl bg-electric-blue/5 border border-electric-blue/20"
               >
-                <CheckCircle2 className="w-5 h-5 text-electric-blue mt-0.5 flex-shrink-0" />
-                <p className="text-gray-300 text-sm md:text-base">{solution}</p>
-              </motion.div>
+                <CheckCircle2 className="w-5 h-5 text-electric-blue mt-1 flex-shrink-0" />
+                <p className="text-gray-300 text-sm md:text-base leading-relaxed">{solution}</p>
+              </div>
             ))}
           </motion.div>
         </div>

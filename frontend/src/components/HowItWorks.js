@@ -50,13 +50,13 @@ export default function HowItWorks() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 md:mb-16 lg:mb-20 px-4"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-gray-400 mb-6">
+          <span className="inline-block px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-gray-200 mb-6 drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)]">
             So funktioniert es
           </span>
-          <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4">
+          <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]">
             Fünf Schritte zu besserem Service
           </h2>
-          <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-gray-200 text-base md:text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.4)]">
             Vom Klingeln bis zur Lösung – so transformiert unsere KI jede Kundeninteraktion.
           </p>
         </motion.div>
@@ -88,10 +88,10 @@ export default function HowItWorks() {
                   </div>
                 </div>
                 
-                <h3 className="font-heading text-base xl:text-lg font-semibold text-white mb-2">
+                <h3 className="font-heading text-base xl:text-lg font-semibold text-white mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
                   {step.title}
                 </h3>
-                <p className="text-xs xl:text-sm text-gray-400 leading-relaxed">
+                <p className="text-xs xl:text-sm text-gray-200 leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)]">
                   {step.description}
                 </p>
               </div>
@@ -121,7 +121,7 @@ export default function HowItWorks() {
                 <h3 className="font-heading text-base font-semibold text-white mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-200 leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)]">
                   {step.description}
                 </p>
               </div>
@@ -149,7 +149,7 @@ export default function HowItWorks() {
                 <h3 className="font-heading text-base font-semibold text-white mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-200 leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)]">
                   {step.description}
                 </p>
               </div>
@@ -179,7 +179,7 @@ export default function HowItWorks() {
                 <h3 className="font-heading text-base font-semibold text-white mb-1">
                   {step.title}
                 </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-200 leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)]">
                   {step.description}
                 </p>
               </div>

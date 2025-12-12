@@ -51,9 +51,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Manrope", "sans-serif"],
-        heading: ["Syne", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        sans: ["Manrope", "Inter", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+        heading: ["Syne", "Inter", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",
